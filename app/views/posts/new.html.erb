@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+  <%= form_with model: @post ,url: posts_path, local: true do |f| %>
+    <%= f.text_area :text %>
+    <%= f.submit "投稿" %>
+  <% end %>
+<% else %>
+<% end %>

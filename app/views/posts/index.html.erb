@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+  <li><%= current_user.email %></li>
+  <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+  <li><%= link_to '投稿', new_post_path %></li>
+<% else %>
+  <li><%= link_to 'ログイン', new_user_session_path %></li>
+  <li><%= link_to '新規登録', new_user_registration_path %></li>
+<% end %>
+
+
+
+<% @posts.each do |post|%>
+  <br>
+  内容：<%= post.text %>
+  投稿者：<%= post.user.email %>
+  <% if user_signed_in? && current_user == post.user %>
+    <%= link_to '編集', edit_post_path(post), method: :get %>
+  <% end %>
+<% end %>
